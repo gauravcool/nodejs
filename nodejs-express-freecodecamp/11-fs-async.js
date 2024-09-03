@@ -1,5 +1,7 @@
-const { log } = require('console');
+// async ~ non-blocking
+
 const { readFile, writeFile } = require('fs');
+console.log('start');
 
 readFile('./content/first.txt', 'utf8', (err1, result1) => {
     if(err1) {
@@ -20,8 +22,10 @@ readFile('./content/first.txt', 'utf8', (err1, result1) => {
                     console.log(err);
                     return
                 }
-                console.log(res);
+                console.log('done with this task');
             }
         )
     })
 })
+
+console.log( 'starting the next one...');
