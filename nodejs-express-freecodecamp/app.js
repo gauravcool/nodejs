@@ -1,12 +1,11 @@
-// GLOBALS - NO WINDOW
+// CommonJS, every file is module (by default)
+// Modules - Encapsulated Code (only share minimum)
+const {john, peter} = require('./4-names');
+const sayHi = require('./5-utils')
+// console.log(names);
+// console.log(sayHi);
 
-// __dirname - path to current directory
-// __filename - file name
-// require - function to use modules (commonJS)
-// module - info about current module (file)
-// process - info about env where the program is being executed
 
-console.log(__dirname);
-setInterval(() => {
-    console.log("Hello world!");
-}, 1000);
+sayHi('Gaurav');
+sayHi(john);
+sayHi(peter);
