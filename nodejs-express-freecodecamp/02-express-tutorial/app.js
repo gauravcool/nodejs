@@ -1,9 +1,9 @@
 const express = require('express')
 const logger = require('./logger')
 const app = express()
-
+const authorize = require('./authorize')
 //req -> middleware -> res
-app.use('/api', logger);
+app.use([authorize, logger]);
 
 
 app.get('/', (req, res) => {
