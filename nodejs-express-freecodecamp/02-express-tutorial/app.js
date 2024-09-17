@@ -1,36 +1,11 @@
 const express = require('express')
-const logger = require('./logger')
 const app = express()
-const morgan = require('morgan')
-const authorize = require('./authorize')
-//req -> middleware -> res
-// app.use([authorize, logger]);
+let {people} = require('./data')
 
-app.use(morgan('tiny'))
-
-app.get('/', (req, res) => {
-    res.send('Home')
+app.get('/api/people', (req, res) => {
+    res.status(200).json({success: true, data: people})
 })
 
-// const logger = (req, res, next) => {
-//     const method = req.method;
-//     const url = req.url;
-//     const time = new Date().getFullYear();
-//     console.log(method, url, time);
-//     next()
-// }
-
-app.get('/about', (req, res) => {
-    res.send(`About`);
-})
-
-app.get('/api/products', (req, res) => {
-    res.send(`Products`);
-})
-
-app.get('/api/items', (req, res) => {
-    res.send(`Items`);
-})
 
 app.listen(3000, () => {
     console.log('Server is listening on port 3000...');
