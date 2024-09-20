@@ -58,6 +58,19 @@ app.put('/api/people/:id', (req, res) => {
     res.status(200).json({success: true, data: newPeople})
 })
 
+app.delete('/api/people/:id', (req, res) => {
+    const {id} = req.params;
+    console.log(id);
+    
+    const person = people.find((person) => Number(id) == person.id);
+    if(!person) {
+        return res.status(404).json({success: false, msg: `Person with id ${id} does not exist`});
+    }
+
+    const newPeople = people.filter((person) => person.id != id);
+    res.status(200).json({data: newPeople})
+})
+
 
 app.listen(3000, () => {
     console.log('Server is listening on port 3000...');
