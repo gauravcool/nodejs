@@ -40,6 +40,24 @@ app.post('/api/postman/people', (req, res) => {
     return res.status(201).json([...people, name])
 })
 
+app.put('/api/people/:id', (req, res) => {
+    const {id} = req.params;
+    const {name} = req.body;
+
+    const person = people.find((person) => Number(id) == person.id);
+    
+    if(!person) {
+        return res.status(404).json({success: false, msg: 'Person does not exist'})
+    }
+    const newPeople  = people.map((person) => {
+        if(person.id == Number(id)) {
+            person.name = name
+        }
+        return person
+    })
+    res.status(200).json({success: true, data: newPeople})
+})
+
 
 app.listen(3000, () => {
     console.log('Server is listening on port 3000...');
