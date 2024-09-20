@@ -29,7 +29,15 @@ app.post('/api/people', (req, res) => {
     if(name) {
         res.status(201).json({success: true, person: name});
     }
-    res.status(400).json({success: false, msg: 'Please provide the name'});
+    return res.status(400).json({success: false, msg: 'Please provide the name'});
+})
+
+app.post('/api/postman/people', (req, res) => {
+    const {name} = req.body;
+    if(!name) {
+        return res.status(400).json({success: false, msg: 'Missing name'})
+    }
+    return res.status(201).json([...people, name])
 })
 
 
