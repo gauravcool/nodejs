@@ -3,6 +3,7 @@ const app = express()
 
 const people = require('./routes/people')
 const login = require('./routes/auth')
+
 // static assets
 app.use(express.static('./methods-public'))
 // parse form data
